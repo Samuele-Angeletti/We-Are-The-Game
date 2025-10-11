@@ -1,0 +1,1053 @@
+fileFormatVersion: 2
+guid: 03a4d530b41fc644bb18f477b669fbfd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6876630815275872814
+    second: LOGO-SCUOLA-1024x280_0
+  - first:
+      213: 9219564180247233684
+    second: LOGO-SCUOLA-1024x280_1
+  - first:
+      213: -5758429238574736668
+    second: LOGO-SCUOLA-1024x280_2
+  - first:
+      213: -3645310228322285245
+    second: LOGO-SCUOLA-1024x280_3
+  - first:
+      213: -2624839881936396815
+    second: LOGO-SCUOLA-1024x280_4
+  - first:
+      213: -4379950420749148693
+    second: LOGO-SCUOLA-1024x280_5
+  - first:
+      213: -6947328448374023701
+    second: LOGO-SCUOLA-1024x280_6
+  - first:
+      213: 4093873313602315393
+    second: LOGO-SCUOLA-1024x280_7
+  - first:
+      213: 5684779791095309770
+    second: LOGO-SCUOLA-1024x280_8
+  - first:
+      213: -6210027150693797378
+    second: LOGO-SCUOLA-1024x280_9
+  - first:
+      213: 92464674516340555
+    second: LOGO-SCUOLA-1024x280_10
+  - first:
+      213: -4210655348843477571
+    second: LOGO-SCUOLA-1024x280_11
+  - first:
+      213: -500559820103787363
+    second: LOGO-SCUOLA-1024x280_12
+  - first:
+      213: 1988845044872583050
+    second: LOGO-SCUOLA-1024x280_13
+  - first:
+      213: -752069839163932196
+    second: LOGO-SCUOLA-1024x280_14
+  - first:
+      213: -7853477255229288149
+    second: LOGO-SCUOLA-1024x280_15
+  - first:
+      213: -8918706622499090974
+    second: LOGO-SCUOLA-1024x280_16
+  - first:
+      213: -4602473105608092183
+    second: LOGO-SCUOLA-1024x280_17
+  - first:
+      213: 1197441456371690222
+    second: LOGO-SCUOLA-1024x280_18
+  - first:
+      213: 6452887236061385029
+    second: LOGO-SCUOLA-1024x280_19
+  - first:
+      213: 4873402423878605322
+    second: LOGO-SCUOLA-1024x280_20
+  - first:
+      213: 6607479102748806006
+    second: LOGO-SCUOLA-1024x280_21
+  - first:
+      213: 4714661894019165265
+    second: LOGO-SCUOLA-1024x280_22
+  - first:
+      213: -8837120704853158327
+    second: LOGO-SCUOLA-1024x280_23
+  - first:
+      213: -8130161947990279250
+    second: LOGO-SCUOLA-1024x280_24
+  - first:
+      213: 4097551913490893452
+    second: LOGO-SCUOLA-1024x280_25
+  - first:
+      213: 1980393488971318052
+    second: LOGO-SCUOLA-1024x280_26
+  - first:
+      213: -9203497007568537509
+    second: LOGO-SCUOLA-1024x280_27
+  - first:
+      213: 9158571772155491352
+    second: LOGO-SCUOLA-1024x280_28
+  - first:
+      213: 6249174350322220572
+    second: LOGO-SCUOLA-1024x280_29
+  - first:
+      213: -1829056593075717606
+    second: LOGO-SCUOLA-1024x280_30
+  - first:
+      213: 5448476085923384480
+    second: LOGO-SCUOLA-1024x280_31
+  - first:
+      213: 4423577692109403570
+    second: LOGO-SCUOLA-1024x280_32
+  - first:
+      213: 4787442959895279771
+    second: LOGO-SCUOLA-1024x280_33
+  - first:
+      213: 3163596459073819570
+    second: LOGO-SCUOLA-1024x280_34
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 86
+        width: 121
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e22f504ea43be6f50800000000000000
+      internalID: 6876630815275872814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 86
+        width: 312
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4944d8b46c872ff70800000000000000
+      internalID: 9219564180247233684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_2
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 196
+        width: 51
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ea9782fd13f510b0800000000000000
+      internalID: -5758429238574736668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_3
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 196
+        width: 46
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34980c839a1496dc0800000000000000
+      internalID: -3645310228322285245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_4
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 196
+        width: 46
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fd17ecc802b29bd0800000000000000
+      internalID: -2624839881936396815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_5
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 196
+        width: 48
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bed9c6d5c4a4733c0800000000000000
+      internalID: -4379950420749148693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_6
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 197
+        width: 18
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be953b0b591269f90800000000000000
+      internalID: -6947328448374023701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_7
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 196
+        width: 47
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 184a7b4a61c50d830800000000000000
+      internalID: 4093873313602315393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_8
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 100
+        width: 14
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac52e8ac91564ee40800000000000000
+      internalID: 5684779791095309770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_9
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 99
+        width: 31
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef17d55653d81d9a0800000000000000
+      internalID: -6210027150693797378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_10
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 168
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f81dea120884100800000000000000
+      internalID: 92464674516340555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_11
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 100
+        width: 13
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db5069ce44fb095c0800000000000000
+      internalID: -4210655348843477571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_12
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 213
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9c51e5ee77ad09f0800000000000000
+      internalID: -500559820103787363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_13
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 100
+        width: 42
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a871dece70cc99b10800000000000000
+      internalID: 1988845044872583050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_14
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 98
+        width: 44
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd14956477c1095f0800000000000000
+      internalID: -752069839163932196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_15
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 100
+        width: 29
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b21d27ebb08d20390800000000000000
+      internalID: -7853477255229288149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_16
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 100
+        width: 42
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ed840684936a3480800000000000000
+      internalID: -8918706622499090974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_17
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 98
+        width: 42
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e5d0fb681bb020c0800000000000000
+      internalID: -4602473105608092183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_18
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 100
+        width: 40
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea6c5609aa2e9010800000000000000
+      internalID: 1197441456371690222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_19
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 100
+        width: 13
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 541571990c24d8950800000000000000
+      internalID: 6452887236061385029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_20
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 98
+        width: 44
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0adfc22fadc1a340800000000000000
+      internalID: 4873402423878605322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_21
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 100
+        width: 41
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67bc82c6c3b72bb50800000000000000
+      internalID: 6607479102748806006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_22
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 98
+        width: 42
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15c25156308dd6140800000000000000
+      internalID: 4714661894019165265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_23
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 98
+        width: 41
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9465afd3a8d3c5580800000000000000
+      internalID: -8837120704853158327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_24
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 1
+        width: 44
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eab34a3a8ccdb2f80800000000000000
+      internalID: -8130161947990279250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_25
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 71
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8ac85c61cd6dd830800000000000000
+      internalID: 4097551913490893452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_26
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 1
+        width: 52
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 423c1a9b265cb7b10800000000000000
+      internalID: 1980393488971318052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_27
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 69
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b58b18cdb3c964080800000000000000
+      internalID: -9203497007568537509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_28
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 0
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8147f39a088c91f70800000000000000
+      internalID: 9158571772155491352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_29
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 2
+        width: 14
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1e307a46f689b650800000000000000
+      internalID: 6249174350322220572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_30
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 1
+        width: 48
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ab2a728b2ed96e0800000000000000
+      internalID: -1829056593075717606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_31
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 2
+        width: 72
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ac8ca40220ec9b40800000000000000
+      internalID: 5448476085923384480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_32
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 2
+        width: 18
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b5f58e4974b36d30800000000000000
+      internalID: 4423577692109403570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_33
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1
+        width: 46
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b98b00fc10a607240800000000000000
+      internalID: 4787442959895279771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOGO-SCUOLA-1024x280_34
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 1
+        width: 45
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b357c3d73a57eb20800000000000000
+      internalID: 3163596459073819570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LOGO-SCUOLA-1024x280_0: 6876630815275872814
+      LOGO-SCUOLA-1024x280_1: 9219564180247233684
+      LOGO-SCUOLA-1024x280_10: 92464674516340555
+      LOGO-SCUOLA-1024x280_11: -4210655348843477571
+      LOGO-SCUOLA-1024x280_12: -500559820103787363
+      LOGO-SCUOLA-1024x280_13: 1988845044872583050
+      LOGO-SCUOLA-1024x280_14: -752069839163932196
+      LOGO-SCUOLA-1024x280_15: -7853477255229288149
+      LOGO-SCUOLA-1024x280_16: -8918706622499090974
+      LOGO-SCUOLA-1024x280_17: -4602473105608092183
+      LOGO-SCUOLA-1024x280_18: 1197441456371690222
+      LOGO-SCUOLA-1024x280_19: 6452887236061385029
+      LOGO-SCUOLA-1024x280_2: -5758429238574736668
+      LOGO-SCUOLA-1024x280_20: 4873402423878605322
+      LOGO-SCUOLA-1024x280_21: 6607479102748806006
+      LOGO-SCUOLA-1024x280_22: 4714661894019165265
+      LOGO-SCUOLA-1024x280_23: -8837120704853158327
+      LOGO-SCUOLA-1024x280_24: -8130161947990279250
+      LOGO-SCUOLA-1024x280_25: 4097551913490893452
+      LOGO-SCUOLA-1024x280_26: 1980393488971318052
+      LOGO-SCUOLA-1024x280_27: -9203497007568537509
+      LOGO-SCUOLA-1024x280_28: 9158571772155491352
+      LOGO-SCUOLA-1024x280_29: 6249174350322220572
+      LOGO-SCUOLA-1024x280_3: -3645310228322285245
+      LOGO-SCUOLA-1024x280_30: -1829056593075717606
+      LOGO-SCUOLA-1024x280_31: 5448476085923384480
+      LOGO-SCUOLA-1024x280_32: 4423577692109403570
+      LOGO-SCUOLA-1024x280_33: 4787442959895279771
+      LOGO-SCUOLA-1024x280_34: 3163596459073819570
+      LOGO-SCUOLA-1024x280_4: -2624839881936396815
+      LOGO-SCUOLA-1024x280_5: -4379950420749148693
+      LOGO-SCUOLA-1024x280_6: -6947328448374023701
+      LOGO-SCUOLA-1024x280_7: 4093873313602315393
+      LOGO-SCUOLA-1024x280_8: 5684779791095309770
+      LOGO-SCUOLA-1024x280_9: -6210027150693797378
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
