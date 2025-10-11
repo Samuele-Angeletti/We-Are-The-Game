@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] float fadeInDuration = 2f;
     [SerializeField] float fadeOutDuration = 2f;
     [SerializeField] List<AudioClip> soundtracks;
+    [SerializeField, Range(0f, 1f)] float fadeInMaximumValue;
     AudioSource audioSource;
     int _soundtrackIndex = -1;
 
@@ -56,7 +57,7 @@ public class SoundManager : MonoBehaviour
     private IEnumerator FadeAudio(bool fadeIn, float fadeInDuration)
     {
         float startVolume = fadeIn ? 0f : audioSource.volume;
-        float endVolume = fadeIn ? 1f : 0f;
+        float endVolume = fadeIn ? fadeInMaximumValue : 0f;
         float elapsedTime = 0f;
 
         if (fadeIn)
