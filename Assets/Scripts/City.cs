@@ -5,6 +5,8 @@ public class City : MonoBehaviour
 {
     [SerializeField] private CityData cityData;
 
+    public CityData CityData => cityData;
+
     public float DecayUpdateInterval = 1f;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -13,6 +15,7 @@ public class City : MonoBehaviour
     {
         SetUp();
         StartDecay();
+        //SaveCity();
     }
 
     void Update()
@@ -34,6 +37,7 @@ public class City : MonoBehaviour
         StopDecay();
         cityData.IsSaved = true;
         spriteRenderer.color = cityData.SavedColor;
+        StartMedicineProduction();
     }
 
     public void AddMedicine(int amount)
@@ -50,6 +54,22 @@ public class City : MonoBehaviour
     {
         cityData.IsDestroyed = true;
         spriteRenderer.color = cityData.DestroyedColor;
+        StopMedicineProduction();
+    }
+
+    public void StartMedicineProduction()
+    { 
+        InvokeRepeating(nameof(MakeMedicine), 0, cityData.MedicineProductionInterval);
+    }
+
+    public void StopMedicineProduction()
+    {
+        CancelInvoke(nameof(MakeMedicine));
+    }
+
+    public void MakeMedicine()
+    {
+        cityData.CurrentMedicine += cityData.MedicineProductionRate;
     }
 
     // should subscribe to an event to know when sender is arrived to other city

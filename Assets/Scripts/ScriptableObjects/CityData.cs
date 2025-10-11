@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CityData", menuName = "ScriptableObjects"
@@ -52,9 +53,9 @@ public class CityData : ScriptableObject
         set { currentMedicine = Mathf.Clamp(value, 0, medicineCap); }
     }
 
-    private int currentTimeBeforeDecay;
+    private float currentTimeBeforeDecay;
 
-    public int CurrentTimeBeforeDecay
+    public float CurrentTimeBeforeDecay
     {
         get { return currentTimeBeforeDecay; }
         set { currentTimeBeforeDecay = Mathf.Clamp(value, 0, timeBeforeDecay); }
