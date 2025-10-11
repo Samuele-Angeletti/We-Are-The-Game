@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa6aedf0b5471141b9e2a391ce2260d, type: 3}
+  m_Name: SpawnResources
+  m_EditorClassIdentifier: 
+  GameEventType: 0
+  GameEventEffect: 1
+  ShowIcon: 0
+  SpriteIcon: {fileID: 0}
+  BombPrefab: {fileID: 0}
+  chanceSuccess: 0.6
+  StatsOnSuccess:
+    Stamina: -20
+    Medicines: 10
+  StatsOnFailure:
+    Stamina: -20
+    Medicines: 0

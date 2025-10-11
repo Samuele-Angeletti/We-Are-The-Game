@@ -18,26 +18,17 @@ public class CityUI : MonoBehaviour
 
     void Update()
     {
-        if (city.CityData)
+        medicineCount.gameObject.SetActive(true);
+
+        medicineCount.text = city.CurrentMedicine.ToString();
+
+        if (city.IsSaved)
         {
-            medicineCount.gameObject.SetActive(true);
-
-            medicineCount.text = city.CityData.CurrentMedicine.ToString();
-
-            if (city.CityData.IsSaved)
-            {
-                medicineCount.color = savedColor;
-            }
-            else
-            {
-                medicineCount.color = riskColor;
-            }
-
+            medicineCount.color = savedColor;
         }
         else
         {
-            medicineCount.gameObject.SetActive(false);
+            medicineCount.color = riskColor;
         }
-
     }
 }

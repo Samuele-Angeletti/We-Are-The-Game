@@ -1,128 +1,212 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class City : MonoBehaviour
 {
-    [SerializeField] private CityData cityData;
+    [Header("Config (ScriptableObject)")]
+    [SerializeField] private CityConfig config;
 
-    public CityData CityData => cityData;
+    [Header("Runtime state (do not edit at runtime)")]
+    [SerializeField]
+    private int currentMedicine;
+    [SerializeField]
+    private float currentTimeBeforeDecay;
+    [SerializeField]
+    private bool isSaved = false;
+    [SerializeField]
+    private bool isDestroyed = false;
+    [SerializeField]
+    private bool isProducing = false;
 
-    public float DecayUpdateInterval = 1f;
-
+    [Header("References")]
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+    // coroutines
+    private Coroutine productionCoroutine;
+    private Coroutine decayCoroutine;
+
+    void Awake()
+    {
+        if (config == null)
+            Debug.LogError($"City '{name}' has no CityConfig assigned.");
+
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
 
     void Start()
     {
-        SetUp();
+        InitializeState();
         StartDecay();
-        //SaveCity();
     }
 
-    void Update()
+    private void InitializeState()
     {
+        currentMedicine = config != null ? config.StartingMedicine : 0;
+        currentTimeBeforeDecay = config != null ? config.TimeBeforeDecay : 0f;
+        isSaved = false;
+        isDestroyed = false;
+        isProducing = false;
+
+        if (spriteRenderer != null && config != null)
+            spriteRenderer.color = config.NormalColor;
     }
 
-    public void SetUp()
-    {
-        cityData.CurrentMedicine = cityData.StartingMedicine;
-        cityData.CurrentTimeBeforeDecay = cityData.TimeBeforeDecay;
-        cityData.IsSaved = false;
-        cityData.IsDestroyed = false;
+    #region Save / Destroy / Medicine API
 
-        spriteRenderer.color = cityData.NormalColor;
-    }
-
+    /// <summary>
+    /// Called when the player 'saves' this city by delivering medicine.
+    /// Makes it a base and starts production.
+    /// </summary>
     public void SaveCity()
     {
-        StopDecay();
-        cityData.IsSaved = true;
-        spriteRenderer.color = cityData.SavedColor;
+        if (isDestroyed || isSaved) return;
+
+        isSaved = true;
+        StopDecay(); // ora non decadere più
+        if (spriteRenderer != null)
+            spriteRenderer.color = config.SavedColor;
+
         StartMedicineProduction();
-    }
-
-    public void AddMedicine(int amount)
-    {
-        cityData.CurrentMedicine += amount;
-    }
-
-    public void TakeMedicine(int amount)
-    {
-        cityData.CurrentMedicine -= amount;
     }
 
     public void DestroyCity()
     {
-        cityData.IsDestroyed = true;
-        spriteRenderer.color = cityData.DestroyedColor;
+        if (isDestroyed) return;
+        isDestroyed = true;
+        isSaved = false;
+        StopDecay();
         StopMedicineProduction();
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = config.DestroyedColor;
     }
 
-    public void StartMedicineProduction()
-    { 
-        InvokeRepeating(nameof(MakeMedicine), 0, cityData.MedicineProductionInterval);
-    }
-
-    public void StopMedicineProduction()
+    public void AddMedicine(int amount)
     {
-        CancelInvoke(nameof(MakeMedicine));
+        if (isDestroyed) return;
+        currentMedicine = Mathf.Clamp(currentMedicine + amount, 0, config.MedicineCap);
     }
 
-    public void MakeMedicine()
+    /// <summary>
+    /// Remove medicine, returning the actual removed amount (clamped).
+    /// </summary>
+    public int TakeMedicine(int amount)
     {
-        cityData.CurrentMedicine += cityData.MedicineProductionRate;
+        if (isDestroyed) return 0;
+        int removed = Mathf.Min(amount, currentMedicine);
+        currentMedicine -= removed;
+        return removed;
     }
 
-    // should subscribe to an event to know when sender is arrived to other city
-    // and when he gets back
-    public void SendMedicine(City targetCity, int amount)
-    {
-        if (!cityData.IsSaved || cityData.IsDestroyed || cityData.IsSendingMedicine) return;
+    public int CurrentMedicine => currentMedicine;
+    public bool IsSaved => isSaved;
+    public bool IsDestroyed => isDestroyed;
 
-        if (amount > cityData.CurrentMedicine)
+    #endregion
+
+    #region Production
+
+    private void StartMedicineProduction()
+    {
+        if (isProducing) return;
+        productionCoroutine = StartCoroutine(MedicineProductionCoroutine());
+        isProducing = true;
+    }
+
+    private void StopMedicineProduction()
+    {
+        if (!isProducing) return;
+        if (productionCoroutine != null)
+            StopCoroutine(productionCoroutine);
+
+        productionCoroutine = null;
+        isProducing = false;
+    }
+
+    private IEnumerator MedicineProductionCoroutine()
+    {
+        // produce immediatamente? qui aspettiamo l'intervallo (opzionale)
+        while (true)
         {
-            Debug.LogWarning($"City {gameObject.name} does not have enough medicine to send {amount}. Sending: {cityData.CurrentMedicine}");
-            amount = cityData.CurrentMedicine;
+            yield return new WaitForSeconds(config.MedicineProductionInterval);
+            AddMedicine(config.MedicineProductionRate);
+            // TODO: notificare UI/manager (evento) che la città ha cambiato medicine
         }
-
-        TakeMedicine(amount);
-
-        // give medicine to sender and assign target city to it
-
-        cityData.IsSendingMedicine = true;
     }
 
-    public void ReceiveMedicine(int amount)
-    {
-        if (!cityData.IsSendingMedicine) return;
-        AddMedicine(amount);
-    }
+    #endregion
 
-    public void StartDecay()
-    {
-        InvokeRepeating(nameof(DecayCity), 0, DecayUpdateInterval);
-    }
+    #region Decay
 
-    private void DecayCity()
+    private void StartDecay()
     {
-        cityData.CurrentTimeBeforeDecay -= (int)DecayUpdateInterval;
-        Debug.Log($"City {gameObject.name} time before decay: {cityData.CurrentTimeBeforeDecay} / {cityData.TimeBeforeDecay}");
-        // Call UI update here
-
-        if (cityData.CurrentTimeBeforeDecay <= 0)
-        {
-            StopDecay();
-            DestroyCity();
-        }
+        // Solo se la città non è già saved/distrutta e il tempo è > 0
+        if (isSaved || isDestroyed || config == null || config.TimeBeforeDecay <= 0f) return;
+        decayCoroutine = StartCoroutine(DecayCoroutine());
     }
 
     private void StopDecay()
     {
-        CancelInvoke(nameof(DecayCity));
+        if (decayCoroutine != null)
+            StopCoroutine(decayCoroutine);
+        decayCoroutine = null;
     }
+
+    private IEnumerator DecayCoroutine()
+    {
+        // decresce il timer ogni secondo
+        while (currentTimeBeforeDecay > 0f)
+        {
+            yield return new WaitForSeconds(1f);
+            currentTimeBeforeDecay -= 1f;
+            // eventualmente notificare UI/manager con un evento
+            // Debug.Log($"City {name} decay: {currentTimeBeforeDecay}/{config.TimeBeforeDecay}");
+        }
+
+        // tempo scaduto
+        DestroyCity();
+    }
+
+    #endregion
+
+    #region Player interaction (trigger)
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // trigger with sender
+        // cerca il Player (assumo ha componente Player)
+        var player = collision.GetComponent<Player>();
+        if (player == null) return;
+
+        // Quando il player entra:
+        // 1) Se ha medicine -> trasferiscile alla città
+        // 2) Marca la città come salvata (se ha ricevuto medicine almeno una volta)
+        // 3) Ripristina la stamina del player (diventa un campo base)
+
+        int playerMedicines = player.stats != null ? player.stats.Medicines : 0;
+        if (playerMedicines > 0)
+        {
+            int accepted = Mathf.Min(playerMedicines, config.MedicineCap - currentMedicine);
+            // se vuoi trasferire tutto indipendentemente dal cap, usa playerMedicines
+
+            // rimuovi dal player
+            player.stats.Medicines -= accepted;
+            // aggiungi alla città
+            AddMedicine(accepted);
+        }
+
+        // se ora la città ha medicine > 0 e non è distrutta -> è considerata salvata
+        if (!isDestroyed && currentMedicine > 0)
+        {
+            SaveCity();
+        }
+
+        // la città funge da campo base: ripristina stamina del player
+        player.RestoreFullStamina();
+
+        // eventualmente notifica un manager di gioco (es. aumentare produzione globale)
     }
 
+    #endregion
 }
