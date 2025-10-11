@@ -2,6 +2,5 @@
 {
     BombDrop,
     SpawnResources,
-    HelpCivil,
-    Unknown
+    HelpCivil
 }

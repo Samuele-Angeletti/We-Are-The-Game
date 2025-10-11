@@ -1,19 +1,35 @@
+using System;
 using UnityEngine;
-[CreateAssetMenu(fileName ="New Game Event", menuName ="NewGameEvent")]
+[CreateAssetMenu(fileName = "New Game Event", menuName = "NewGameEvent")]
 public class GameEvent : ScriptableObject
 {
     public EGameEventType GameEventType;
     public EGameEventEffect GameEventEffect;
-
-    public Sprite SpriteGraphics;
-
+    public bool ShowIcon = true;
+    public Sprite SpriteIcon;
+    [Header("Only for bomb drop")]
+    public GameObject BombPrefab;
+    [Header("Success percentage (not for bombs)")]
     [SerializeField, Range(0, 1f)] float chanceSuccess;
 
-    public float ChanceSuccessPercentage => chanceSuccess * 100;
-    public float ChanceFailurePercentage => (1f - chanceSuccess) * 100;
+    [Header("Win options")]
+    public GameEventsStats StatsOnSuccess { get; } // to show UI
+    [Header("Lose options")]
+    public GameEventsStats StatsOnFailure { get; } // to show UI
 
-    public bool TryChanceSuccess()
+    public float ChanceSuccessPercentage => chanceSuccess * 100; // to show UI
+    public float ChanceFailurePercentage => (1f - chanceSuccess) * 100; // to show UI
+
+    public GameEventsStats ExecuteEventAndGetStats() // to use on selection
     {
-        return Random.Range(0, 1f) <= chanceSuccess;
+        return UnityEngine.Random.Range(0, 1f) <= chanceSuccess ? StatsOnSuccess : StatsOnFailure;
     }
+
+}
+
+[Serializable]
+public class GameEventsStats
+{
+    public float Stamina;
+    public int Medicines;
 }

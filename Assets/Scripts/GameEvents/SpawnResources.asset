@@ -10,5 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0aa6aedf0b5471141b9e2a391ce2260d, type: 3}
-  m_Name: New Game Event
+  m_Name: SpawnResources
   m_EditorClassIdentifier: 
+  GameEventType: 0
+  GameEventEffect: 1
+  ShowIcon: 0
+  SpriteIcon: {fileID: 0}
+  BombPrefab: {fileID: 0}
+  chanceSuccess: 0.6
+  statsOnSuccess:
+    Stamina: -20
+    Medicines: 10
+  statsOnFailure:
+    Stamina: 0
+    Medicines: 0
