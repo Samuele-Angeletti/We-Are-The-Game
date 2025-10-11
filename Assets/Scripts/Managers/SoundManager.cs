@@ -26,10 +26,10 @@ public class SoundManager : MonoBehaviour
     {
         while (true)
         {
-            if (audioSource.isPlaying)
-                yield return null;
-
             SetNextSoundtrack();
+
+            while (audioSource.isPlaying)
+                yield return null;
         }
     }
 
