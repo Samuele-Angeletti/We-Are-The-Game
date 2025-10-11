@@ -84,6 +84,7 @@ public class SoundManager : MonoBehaviour
         if (!fadeIn)
         {
             audioSource.Stop();
+            StopAllCoroutines();
         }
     }
 }
