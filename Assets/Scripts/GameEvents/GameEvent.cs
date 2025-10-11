@@ -13,9 +13,9 @@ public class GameEvent : ScriptableObject
     [SerializeField, Range(0, 1f)] float chanceSuccess;
 
     [Header("Win options")]
-    public GameEventsStats StatsOnSuccess { get; } // to show UI
+    public GameEventsStats StatsOnSuccess; // to show UI
     [Header("Lose options")]
-    public GameEventsStats StatsOnFailure { get; } // to show UI
+    public GameEventsStats StatsOnFailure; // to show UI
 
     public float ChanceSuccessPercentage => chanceSuccess * 100; // to show UI
     public float ChanceFailurePercentage => (1f - chanceSuccess) * 100; // to show UI
