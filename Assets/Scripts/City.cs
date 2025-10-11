@@ -123,6 +123,12 @@ public class City : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // trigger with sender
+        if (collision.TryGetComponent(out Player player))
+        { 
+            player.occupied = true;
+            player.lastVisitedCity = this;
+            // open UI to handle city interaction
+        }
     }
 
 }
