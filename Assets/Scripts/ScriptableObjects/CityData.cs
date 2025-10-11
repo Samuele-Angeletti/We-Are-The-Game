@@ -1,38 +1,31 @@
-using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CityData", menuName = "ScriptableObjects"
-    + "/" + "CityData"
-)]
-
-public class CityData : ScriptableObject
+[CreateAssetMenu(fileName = "CityConfig", menuName = "ScriptableObjects/CityConfig")]
+public class CityConfig : ScriptableObject
 {
     [Header("Settings")]
-
-    [SerializeField, Min(0)] private int startingMedicine;
+    [SerializeField, Min(0)] private int startingMedicine = 0;
     public int StartingMedicine => startingMedicine;
 
-    [SerializeField, Min(0)] private int medicineCost;
+    [SerializeField, Min(0)] private int medicineCost = 1; // se vuoi un costo per inviare
     public int MedicineCost => medicineCost;
 
-    [SerializeField, Min(0)] private int medicineCarried;
+    [SerializeField, Min(0)] private int medicineCarried = 1; // quanti ne porta il player (opzionale)
     public int MedicineCarried => medicineCarried;
 
-    [SerializeField, Min(0)] private int medicineCap;
+    [SerializeField, Min(0)] private int medicineCap = 100;
     public int MedicineCap => medicineCap;
 
-
     [Space]
-    [SerializeField, Min(0)] private int medicineProductionRate;
+    [SerializeField, Min(0)] private int medicineProductionRate = 1;
     public int MedicineProductionRate => medicineProductionRate;
 
-    [SerializeField, Min(0)] private float medicineProductionInterval;
+    [SerializeField, Min(0.01f)] private float medicineProductionInterval = 5f;
     public float MedicineProductionInterval => medicineProductionInterval;
 
-
     [Space]
-    [SerializeField, Min(0), Tooltip("In seconds")] private int timeBeforeDecay;
-    public int TimeBeforeDecay => timeBeforeDecay;
+    [SerializeField, Min(0)] private float timeBeforeDecay = 60f; // in seconds
+    public float TimeBeforeDecay => timeBeforeDecay;
 
     [Header("Visual")]
     [SerializeField] private Color normalColor = Color.white;
@@ -43,44 +36,4 @@ public class CityData : ScriptableObject
 
     [SerializeField] private Color destroyedColor = Color.red;
     public Color DestroyedColor => destroyedColor;
-
-
-    private int currentMedicine;
-
-    public int CurrentMedicine
-    {
-        get { return currentMedicine; }
-        set { currentMedicine = Mathf.Clamp(value, 0, medicineCap); }
-    }
-
-    private float currentTimeBeforeDecay;
-
-    public float CurrentTimeBeforeDecay
-    {
-        get { return currentTimeBeforeDecay; }
-        set { currentTimeBeforeDecay = Mathf.Clamp(value, 0, timeBeforeDecay); }
-    }
-
-    private bool isSendingMedicine;
-    public bool IsSendingMedicine
-    {
-        get { return isSendingMedicine; }
-        set { isSendingMedicine = value; }
-    }
-
-    private bool isSaved;
-
-    public bool IsSaved
-    {
-        get { return isSaved; }
-        set { isSaved = value; }
-    }
-
-    private bool isDestroyed;
-
-    public bool IsDestroyed
-    {
-        get { return isDestroyed; }
-        set { isDestroyed = value; }
-    }
 }
