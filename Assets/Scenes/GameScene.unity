@@ -159,6 +159,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -180,6 +182,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -556,14 +559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ddb1ba2bd64ab44bb9640a7b42ca93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medicineCost: 10
-  medicineCarried: 0
-  medicineCap: 10
-  isSaved: 0
-  isDestroyed: 0
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  savedColor: {r: 0.97735846, g: 0.91610366, b: 0.3153364, a: 1}
-  destroyedColor: {r: 0.4566037, g: 0.4566037, b: 0.4566037, a: 0.5294118}
+  cityData: {fileID: 11400000, guid: 3e9ed7b6978881b41a41e7e25bca0c6a, type: 2}
+  DecayUpdateInterval: 1
+  spriteRenderer: {fileID: 539478981}
 --- !u!212 &539478981
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -584,6 +582,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -605,6 +605,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -1283,8 +1284,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   city: {fileID: 539478980}
   medicineCount: {fileID: 939610258}
-  savedColor: {r: 1, g: 1, b: 1, a: 1}
-  riskColor: {r: 1, g: 0.53396225, b: 0.53396225, a: 1}
+  savedColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  riskColor:
+    r: 1
+    g: 0.53396225
+    b: 0.53396225
+    a: 1
 --- !u!114 &1548870692
 MonoBehaviour:
   m_ObjectHideFlags: 0
