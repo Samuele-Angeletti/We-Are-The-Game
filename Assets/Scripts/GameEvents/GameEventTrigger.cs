@@ -10,8 +10,6 @@ public class GameEventTrigger : MonoBehaviour
 
         if (gameEvent.ShowIcon)
             spriteRenderer.sprite = gameEvent.SpriteIcon;
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
