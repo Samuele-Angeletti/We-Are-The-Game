@@ -3,8 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : MonoBehaviour, ISubscriber
 {
+    public UIManager Instance;
     [Header("Player/NPC Dialogue")]
     [SerializeField] GameObject playerDialogueContainer;
     [SerializeField] TMP_Text playerText;
@@ -26,14 +27,19 @@ public class UIManager : Singleton<UIManager>
     [Header("PopUp")]
     [SerializeField] GameObject popUpPanel;
     [SerializeField] TMP_Text popUpText;
+    [SerializeField] Button acceptEventButton;
+    [SerializeField] Button refuseEventButton;
 
     [Header("Dialogue Vars")]
     [SerializeField] int minDialogueLetters = 10;
     [SerializeField] int maxDialogueLetters = 15;
 
-    public override void Awake()
+    public void Awake()
     {
-        base.Awake();
+        if(Instance == null) Instance = this;
+        else Destroy(gameObject);
+
+        Publisher.Subscribe(this, typeof(OpenEventUIMessage));
     }
     private void Start()
     {
@@ -73,22 +79,18 @@ public class UIManager : Singleton<UIManager>
     {
         int maxChars = Random.Range(minDialogueLetters, maxDialogueLetters + 1);
 
-        // Se maxChars è minore di 1, restituiamo stringa vuota
         if (maxChars < 1)
             return "";
 
-        // Definisce i caratteri possibili (puoi aggiungere numeri o simboli se vuoi)
-        const string letters = "abcdefghijklmnopqrstuvwxyz";
+        const string letters = "1234567890abcdefghijklmnopqrstuvwxyz";
 
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
         int currentLength = 0;
 
         while (currentLength < maxChars)
         {
-            // Decidi casualmente la lunghezza della parola (da 1 a 8 lettere, ma non oltre maxChars)
             int wordLength = Random.Range(1, Mathf.Min(8, maxChars - currentLength) + 1);
 
-            // Aggiungi lettere
             for (int i = 0; i < wordLength && currentLength < maxChars; i++)
             {
                 char randomLetter = letters[Random.Range(0, letters.Length)];
@@ -96,15 +98,32 @@ public class UIManager : Singleton<UIManager>
                 currentLength++;
             }
 
-            // Aggiungi spazio casualmente, solo se non stai per superare maxChars
-            if (currentLength < maxChars && Random.value > 0.3f) // 70% di probabilità di aggiungere spazio
+            if (currentLength < maxChars && Random.value > 0.3f)
             {
                 sb.Append(' ');
                 currentLength++;
             }
         }
-
-        // Rimuove eventuale spazio finale
         return sb.ToString().TrimEnd();
+    }
+
+    public void OnPublish(IPublisherMessage message)
+    {
+        if (message is OpenEventUIMessage pauseMessage)
+        {
+            //mostro il popup con cose dell'evento
+            popUpPanel.SetActive(true);
+            //pauseMessage.GameEvent
+
+        }
+    }
+
+    public void OnDisableSubscriber()
+    {
+        Publisher.Unsubscribe(this, typeof(OpenEventUIMessage));
+    }
+    private void OnDestroy()
+    {
+        OnDisableSubscriber();
     }
 }
