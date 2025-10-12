@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0245c096176e14a824cf05dbf029e8, type: 3}
   m_Name: CityData
   m_EditorClassIdentifier: Assembly-CSharp::CityData
-  startingMedicine: 5
+  startingMedicine: 0
   medicineCost: 10
   medicineCarried: 3
   medicineCap: 30
