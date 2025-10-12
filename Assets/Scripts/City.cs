@@ -19,8 +19,12 @@ public class City : MonoBehaviour
     [SerializeField]
     private bool isProducing = false;
 
+    [SerializeField] private bool isShowingCurrentCityOptions = false;
+
     [Header("References")]
     [SerializeField] private SpriteRenderer spriteRenderer;
+    public BarsLogic barsLogic;
+    [SerializeField] private GameObject showCityOptionsButton;
 
     // coroutines
     private Coroutine productionCoroutine;
@@ -48,6 +52,7 @@ public class City : MonoBehaviour
         isSaved = false;
         isDestroyed = false;
         isProducing = false;
+        showCityOptionsButton.SetActive(false);
 
         if (spriteRenderer != null && config != null)
             spriteRenderer.color = config.NormalColor;
@@ -133,6 +138,9 @@ public class City : MonoBehaviour
             yield return new WaitForSeconds(config.MedicineProductionInterval);
             AddMedicine(config.MedicineProductionRate);
             // TODO: notificare UI/manager (evento) che la città ha cambiato medicine
+
+            barsLogic.UpdateMedicinesBar(currentMedicine, config.MedicineCap);
+            //if(isShowingCurrentCityOptions)
         }
     }
 
@@ -163,6 +171,8 @@ public class City : MonoBehaviour
             currentTimeBeforeDecay -= 1f;
             // eventualmente notificare UI/manager con un evento
             // Debug.Log($"City {name} decay: {currentTimeBeforeDecay}/{config.TimeBeforeDecay}");
+
+            barsLogic.UpdateHealthBar(currentTimeBeforeDecay, config.TimeBeforeDecay);
         }
 
         // tempo scaduto
@@ -206,6 +216,16 @@ public class City : MonoBehaviour
         player.RestoreFullStamina();
 
         // eventualmente notifica un manager di gioco (es. aumentare produzione globale)
+
+
+        showCityOptionsButton.SetActive(true);
+        UIManager.Instance.currentCity = this;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        showCityOptionsButton.SetActive(false);
+        UIManager.Instance.HideCityPanelOptions();
     }
 
     #endregion

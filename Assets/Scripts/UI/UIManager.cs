@@ -23,7 +23,12 @@ public class UIManager : MonoBehaviour, ISubscriber
     [SerializeField] Slider currentCityMedicinesBar;
     [SerializeField] TMP_Text currentCityHealthText;
     [SerializeField] TMP_Text currentCityMedicinesText;
+
     [SerializeField] TMP_Text currentCityDialogueText;
+    [SerializeField] Button currentCityGiveMedicines;
+    [SerializeField] Button currentCityGiveHelpAround;
+    [SerializeField] Button currentCityGetMedicines;
+    [SerializeField] Button hideCityOptionsButton;
 
     [Header("PopUp")]
     [SerializeField] GameObject popUpPanel;
@@ -37,6 +42,7 @@ public class UIManager : MonoBehaviour, ISubscriber
 
     //tmp vars
     private GameEventsStats statsToAddPlayer;
+    public City currentCity;
 
     public void Awake()
     {
@@ -51,16 +57,20 @@ public class UIManager : MonoBehaviour, ISubscriber
         NPCText.text = RandomDialogueLetters();
 
         refuseEventButton.onClick.AddListener(HidePopoup);
+        hideCityOptionsButton.onClick.AddListener(HideCityPanelOptions);
     }
     public void ShowPopup(string _dialogue)
     {
         popUpPanel.SetActive(true);
         popUpText.text = _dialogue;
+
+        Time.timeScale = 0;
     }
     public void HidePopoup()
     {
         popUpPanel.SetActive(false);
-        Publisher.Publish(new OnOffPlayerMovement(false));
+        //Publisher.Publish(new OnOffPlayerMovement(false));
+        Time.timeScale = 1;
     }
 
     public void ShowCityPanelOptions()
@@ -70,9 +80,30 @@ public class UIManager : MonoBehaviour, ISubscriber
         NPCImage.gameObject.SetActive(true);
 
         currentCityOptionsPanel.SetActive(true);
+        if (currentCity == null)
+            Debug.LogError("errore, manca la città attuale");
+        if (!currentCity.IsSaved)
+        {
+            currentCityGiveMedicines.gameObject.SetActive(true);
+            currentCityGiveHelpAround.gameObject.SetActive(false);
+            currentCityGetMedicines.gameObject.SetActive(false);
+        }
+        else
+        {
+            currentCityGiveMedicines.gameObject.SetActive(false);
+            currentCityGiveHelpAround.gameObject.SetActive(true);
+            currentCityGetMedicines.gameObject.SetActive(true);
+        }
+
+        currentCityHealthBar.value = currentCity.barsLogic.healthBar.value;
+        currentCityMedicinesBar.value = currentCity.barsLogic.medicinesBar.value;
+        currentCityHealthText.text = currentCity.barsLogic.healthText.text;
+        currentCityMedicinesText.text = currentCity.barsLogic.medicineText.text;
 
         playerText.text = RandomDialogueLetters();
         NPCText.text = RandomDialogueLetters();
+
+        Time.timeScale = 0;
     }
     public void HideCityPanelOptions()
     {
@@ -81,6 +112,8 @@ public class UIManager : MonoBehaviour, ISubscriber
         NPCImage.gameObject.SetActive(false);
 
         currentCityOptionsPanel.SetActive(false);
+
+        Time.timeScale = 1;
     }
     public string RandomDialogueLetters()
     {
@@ -118,7 +151,6 @@ public class UIManager : MonoBehaviour, ISubscriber
         Publisher.Publish(new AddStatsPlayerMessage(statsToAddPlayer));
         HidePopoup();
     }
-
     public void OnPublish(IPublisherMessage message)
     {
         if (message is OpenEventUIMessage eventMessage)
@@ -144,7 +176,7 @@ public class UIManager : MonoBehaviour, ISubscriber
             acceptEventButton.onClick.AddListener(AddStatsToPlayer);
             ShowPopup(popupToShow);
 
-            Publisher.Publish(new OnOffPlayerMovement(true));//fa stare fermo il player
+            //Publisher.Publish(new OnOffPlayerMovement(true));//fa stare fermo il player
         }
     }
 

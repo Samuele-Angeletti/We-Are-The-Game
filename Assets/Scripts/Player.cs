@@ -28,7 +28,7 @@ public class Player : MonoBehaviour, ISubscriber
         rb = GetComponent<Rigidbody2D>();
 
         Publisher.Subscribe(this, typeof(AddStatsPlayerMessage));
-        Publisher.Subscribe(this, typeof(OnOffPlayerMovement));
+        //Publisher.Subscribe(this, typeof(OnOffPlayerMovement));
     }
 
     void OnEnable()
@@ -133,16 +133,16 @@ public class Player : MonoBehaviour, ISubscriber
         {
             ApplyStatsDelta(playerStatsMessage.PlayerStats);
         }
-        else if (message is OnOffPlayerMovement playerMovement)
-        {
-            occupied = playerMovement.CanMove;
-        }
+        //else if (message is OnOffPlayerMovement playerMovement)
+        //{
+        //    occupied = playerMovement.CanMove;
+        //}
     }
 
     public void OnDisableSubscriber()
     {
         Publisher.Unsubscribe(this, typeof(AddStatsPlayerMessage));
-        Publisher.Unsubscribe(this, typeof(OnOffPlayerMovement));
+        //Publisher.Unsubscribe(this, typeof(OnOffPlayerMovement));
     }
     private void OnDestroy()
     {
