@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, ISubscriber
 
     [Header("Data")]
     public GameEventsStats stats;               // contiene Stamina, StaminaCap, Medicines, ecc.
-    [Tooltip("Velocità di movimento in units/s")]
+    [Tooltip("Velocitï¿½ di movimento in units/s")]
     public float moveSpeed = 4f;
     [Tooltip("Quanta stamina viene consumata al secondo mentre ci si muove")]
     public float staminaDrainRate = 1f;
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour, ISubscriber
             desired = Vector2.zero;
         }
 
-        // Imposta la velocità (uso linearVelocity come richiesto)
+        // Imposta la velocitï¿½ (uso linearVelocity come richiesto)
         rb.linearVelocity = desired;
     }
 
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour, ISubscriber
 
     /// <summary>
     /// Applica un delta di statistiche allo stats corrente del player.
-    /// Esempio: passare un GameEventsStats con Medicines=+5 incrementerà stats.Medicines.
+    /// Esempio: passare un GameEventsStats con Medicines=+5 incrementerï¿½ stats.Medicines.
     /// </summary>
     /// <param name="delta">valori da sommare allo stats del player</param>
     public void ApplyStatsDelta(GameEventsStats delta)
@@ -169,7 +169,7 @@ public class Player : MonoBehaviour, ISubscriber
     }
 
     /// <summary>
-    /// Utility per ricostituire completamente la stamina (es. quando raggiungi una città).
+    /// Utility per ricostituire completamente la stamina (es. quando raggiungi una cittï¿½).
     /// </summary>
     public void RestoreFullStamina()
     {
@@ -183,16 +183,16 @@ public class Player : MonoBehaviour, ISubscriber
         {
             ApplyStatsDelta(playerStatsMessage.PlayerStats);
         }
-        else if (message is OnOffPlayerMovement playerMovement)
-        {
-            occupied = playerMovement.CanMove;
-        }
+        //else if (message is OnOffPlayerMovement playerMovement)
+        //{
+        //    occupied = playerMovement.CanMove;
+        //}
     }
 
     public void OnDisableSubscriber()
     {
         Publisher.Unsubscribe(this, typeof(AddStatsPlayerMessage));
-        Publisher.Unsubscribe(this, typeof(OnOffPlayerMovement));
+        //Publisher.Unsubscribe(this, typeof(OnOffPlayerMovement));
     }
     private void OnDestroy()
     {
