@@ -22,7 +22,7 @@ public class NpcCivilController : MonoBehaviour
     public void Initialize(City ownCity, int medicinesRequested)
     {
         _ownCity = ownCity;
-        stats.Medicines = medicinesRequested;
+        stats.Medicines = _ownCity.TakeMedicine(medicinesRequested);
         this.medicinesRequested = medicinesRequested;
         stats.Stamina = maxStamina;
     }
@@ -39,9 +39,9 @@ public class NpcCivilController : MonoBehaviour
         agent.SetDestination(_destinationCity.transform.position);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.TryGetComponent<City>(out var city))
+        if (collision.TryGetComponent<City>(out var city))
         {
             if (city == _destinationCity && directionIsDestinationCity)
             {
@@ -69,7 +69,7 @@ public class NpcCivilController : MonoBehaviour
             if (stats.Stamina <= 0)
             {
                 stats.Stamina = 0;
-                directionIsDestinationCity = false;
+                directionIsDestinationCity = true;
                 transform.position = _ownCity.transform.position;
                 StartCoroutine(AwaitAndContinue());
             }
@@ -82,5 +82,6 @@ public class NpcCivilController : MonoBehaviour
         yield return new WaitForSeconds(timeAwaitInCity);
         stats.Stamina = maxStamina;
         agent.SetDestination(directionIsDestinationCity ? _destinationCity.transform.position : _ownCity.transform.position);
+        agent.isStopped = false;
     }
 }

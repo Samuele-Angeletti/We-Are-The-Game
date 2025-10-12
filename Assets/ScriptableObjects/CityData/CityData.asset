@@ -18,7 +18,7 @@ MonoBehaviour:
   medicineCap: 30
   medicineProductionRate: 1
   medicineProductionInterval: 2
-  timeBeforeDecay: 10
+  timeBeforeDecay: 100
   normalColor: {r: 0.9672333, g: 1, b: 0.4660377, a: 1}
   savedColor: {r: 0.67100537, g: 1, b: 0, a: 1}
   destroyedColor: {r: 1, g: 0, b: 0, a: 1}
