@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ISubscriber
 {
     private GameInput inputActions;
     private new Rigidbody2D rb;
@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        Publisher.Subscribe(this, typeof(AddStatsPlayerMessage));
+        Publisher.Subscribe(this, typeof(OnOffPlayerMovement));
     }
 
     void OnEnable()
@@ -122,5 +125,27 @@ public class Player : MonoBehaviour
     {
         if (stats == null) return;
         stats.Stamina = maxStamina;
+    }
+
+    public void OnPublish(IPublisherMessage message)
+    {
+        if (message is AddStatsPlayerMessage playerStatsMessage)
+        {
+            ApplyStatsDelta(playerStatsMessage.PlayerStats);
+        }
+        else if (message is OnOffPlayerMovement playerMovement)
+        {
+            occupied = playerMovement.CanMove;
+        }
+    }
+
+    public void OnDisableSubscriber()
+    {
+        Publisher.Unsubscribe(this, typeof(AddStatsPlayerMessage));
+        Publisher.Unsubscribe(this, typeof(OnOffPlayerMovement));
+    }
+    private void OnDestroy()
+    {
+        OnDisableSubscriber();
     }
 }
