@@ -29,7 +29,6 @@ public class City : MonoBehaviour
 
     [Header("Civils")]
     [SerializeField] NpcCivilController civilControllerPrefab;
-
     List<NpcCivilController> npcCivilControllers;
 
     // coroutines
@@ -243,6 +242,8 @@ public class City : MonoBehaviour
         var npc = Instantiate(civilControllerPrefab, transform.position, Quaternion.identity);
         npcCivilControllers.Add(npc);
 
-        npc.Initialize(destination, medicineToCarry);
+        npc.Initialize(this, medicineToCarry);
+        npc.SetCityDestination(destination);
     }
+
 }
