@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour, ISubscriber
 {
-    public UIManager Instance;
+    public static UIManager Instance;
+
     [Header("Player/NPC Dialogue")]
     [SerializeField] GameObject playerDialogueContainer;
     [SerializeField] TMP_Text playerText;
@@ -34,6 +35,9 @@ public class UIManager : MonoBehaviour, ISubscriber
     [SerializeField] int minDialogueLetters = 10;
     [SerializeField] int maxDialogueLetters = 15;
 
+    //tmp vars
+    private GameEventsStats statsToAddPlayer;
+
     public void Awake()
     {
         if(Instance == null) Instance = this;
@@ -45,6 +49,8 @@ public class UIManager : MonoBehaviour, ISubscriber
     {
         playerText.text = RandomDialogueLetters();
         NPCText.text = RandomDialogueLetters();
+
+        refuseEventButton.onClick.AddListener(HidePopoup);
     }
     public void ShowPopup(string _dialogue)
     {
@@ -54,6 +60,7 @@ public class UIManager : MonoBehaviour, ISubscriber
     public void HidePopoup()
     {
         popUpPanel.SetActive(false);
+        Publisher.Publish(new OnOffPlayerMovement(false));
     }
 
     public void ShowCityPanelOptions()
@@ -106,15 +113,38 @@ public class UIManager : MonoBehaviour, ISubscriber
         }
         return sb.ToString().TrimEnd();
     }
+    public void AddStatsToPlayer()
+    {
+        Publisher.Publish(new AddStatsPlayerMessage(statsToAddPlayer));
+        HidePopoup();
+    }
 
     public void OnPublish(IPublisherMessage message)
     {
-        if (message is OpenEventUIMessage pauseMessage)
+        if (message is OpenEventUIMessage eventMessage)
         {
             //mostro il popup con cose dell'evento
-            popUpPanel.SetActive(true);
-            //pauseMessage.GameEvent
+            string popupToShow = "";
+            switch (eventMessage.GameEvent.GameEventEffect)
+            {
+                case EGameEventEffect.SpawnResources:
+                    popupToShow = "incappi in un imprevisto, ti trovi davanti a delle risorse, cosa fai?";
+                    break;
+                case EGameEventEffect.HelpCivil:
+                    popupToShow = "incappi in un imprevisto, ti trovi davanti a dei civili, cosa fai?";
+                    break;
+            }
+            popupToShow += $"\n in caso di successo: {eventMessage.GameEvent.StatsOnSuccess.Stamina}, {eventMessage.GameEvent.StatsOnSuccess.Medicines}" +
+                $"\n in caso di fallimento: {eventMessage.GameEvent.StatsOnFailure.Stamina}, {eventMessage.GameEvent.StatsOnFailure.Medicines}" +
+                $"\n perc di successo:  {eventMessage.GameEvent.ChanceSuccessPercentage}" +
+                $"\n perc di fallimento:  {eventMessage.GameEvent.ChanceFailurePercentage}";
 
+            statsToAddPlayer = eventMessage.GameEvent.ExecuteEventAndGetStats();
+
+            acceptEventButton.onClick.AddListener(AddStatsToPlayer);
+            ShowPopup(popupToShow);
+
+            Publisher.Publish(new OnOffPlayerMovement(true));//fa stare fermo il player
         }
     }
 

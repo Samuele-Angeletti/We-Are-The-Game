@@ -19,8 +19,8 @@ MonoBehaviour:
   BombPrefab: {fileID: 0}
   chanceSuccess: 0.6
   StatsOnSuccess:
-    Stamina: -20
+    Stamina: 5
     Medicines: 10
   StatsOnFailure:
-    Stamina: -20
+    Stamina: -5
     Medicines: 0
