@@ -29,10 +29,27 @@ public class Player : MonoBehaviour, ISubscriber
     [SerializeField] AudioClip engineStartUp;
     [SerializeField] AudioClip engineLoop;
 
+    [Header("Sprites")]
+    [SerializeField] Sprite north;
+    [SerializeField] Sprite south;
+    [SerializeField] Sprite east;
+    [SerializeField] Sprite southEast;
+    [SerializeField] Sprite northWest;
+
+    SpriteRenderer _graphics;
     Vector3 _cityPosition;
     private bool _canMove = true;
+
+    // track last shown sprite/flip to avoid redundant sets
+    private Sprite _lastSprite = null;
+    private bool _lastFlipX = false;
+
+    // threshold below which we consider the player "idle" (no sprite change)
+    private const float SPRITE_CHANGE_SPEED_THRESHOLD = 0.1f;
+
     void Awake()
     {
+        _graphics = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         _cityPosition = transform.position;
         Publisher.Subscribe(this, typeof(AddStatsPlayerMessage));
@@ -122,13 +139,16 @@ public class Player : MonoBehaviour, ISubscriber
 
         // Imposta la velocit� (uso linearVelocity come richiesto)
         rb.linearVelocity = desired;
+
+        // --- NUOVO: aggiorna la sprite in base alla direzione della velocit�
+        HandleSpriteByDirection();
     }
 
     private void HandleAudio(Vector2 movementInput)
     {
         if (occupied || !_canMove)
         {
-            if (audioSource.isPlaying) 
+            if (audioSource.isPlaying)
                 audioSource.Stop();
             return;
         }
@@ -148,6 +168,88 @@ public class Player : MonoBehaviour, ISubscriber
                 audioSource.clip = engineLoop;
 
             audioSource.Play();
+        }
+    }
+
+    /// <summary>
+    /// Aggiorna la sprite del camion in base alla direzione di rb.linearVelocity.
+    /// Usa flipX per coprire West, NorthEast e SouthWest quando necessario.
+    /// Non cambia la sprite se la velocit� � sotto una soglia (idle).
+    /// </summary>
+    private void HandleSpriteByDirection()
+    {
+        if (_graphics == null || rb == null) return;
+
+        Vector2 v = rb.linearVelocity;
+        if (v.sqrMagnitude < SPRITE_CHANGE_SPEED_THRESHOLD * SPRITE_CHANGE_SPEED_THRESHOLD)
+        {
+            // se vuoi, qui si potrebbe mettere una sprite "idle".
+            // Al momento non cambiamo nulla quando il veicolo � fermo.
+            return;
+        }
+
+        // calcola angolo in gradi (0 = +x East, aumenti in senso antiorario)
+        float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+        if (angle < 0f) angle += 360f;
+
+        // mappa l'angolo ai 8 settori: ciascuno 45°, centri a 0,45,90,...
+        // index 0 = East, 1 = NE, 2 = North, 3 = NW, 4 = West, 5 = SW, 6 = South, 7 = SE
+        int sector = Mathf.RoundToInt(angle / 45f) % 8;
+
+        Sprite chosen = null;
+        bool flipX = false;
+
+        switch (sector)
+        {
+            case 0: // East
+                chosen = east;
+                flipX = false;
+                break;
+            case 1: // NorthEast -> usa northWest + flipX (northWest flipped -> northEast)
+                chosen = northWest;
+                flipX = true;
+                break;
+            case 2: // North
+                chosen = north;
+                flipX = false;
+                break;
+            case 3: // NorthWest
+                chosen = northWest;
+                flipX = false;
+                break;
+            case 4: // West -> usa east + flipX
+                chosen = east;
+                flipX = true;
+                break;
+            case 5: // SouthWest -> usa southEast + flipX
+                chosen = southEast;
+                flipX = true;
+                break;
+            case 6: // South
+                chosen = south;
+                flipX = false;
+                break;
+            case 7: // SouthEast
+                chosen = southEast;
+                flipX = false;
+                break;
+            default:
+                chosen = east;
+                flipX = false;
+                break;
+        }
+
+        // se la sprite scelta non � assegnata, non facciamo nulla (evitiamo nullref)
+        if (chosen == null)
+            return;
+
+        // applica solo se � cambiato (minimo lavoro in runtime)
+        if (_lastSprite != chosen || _lastFlipX != flipX)
+        {
+            _graphics.sprite = chosen;
+            _graphics.flipX = flipX;
+            _lastSprite = chosen;
+            _lastFlipX = flipX;
         }
     }
 

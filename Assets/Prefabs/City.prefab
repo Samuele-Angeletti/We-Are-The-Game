@@ -1240,7 +1240,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 253892112688314257}
   barsLogic: {fileID: 4798775280322019084}
   showCityOptionsButton: {fileID: 2695659141918328993}
-  civilControllerPrefab: {fileID: 0}
+  civilControllerPrefab: {fileID: 2787158798834376847, guid: 44e91de4af4ed11408a5ac65bb09a777, type: 3}
 --- !u!61 &146207462029730503
 BoxCollider2D:
   m_ObjectHideFlags: 0

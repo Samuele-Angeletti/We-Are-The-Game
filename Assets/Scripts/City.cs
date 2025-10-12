@@ -246,4 +246,10 @@ public class City : MonoBehaviour
         npc.SetCityDestination(destination);
     }
 
+#if DEBUG
+    public void DEBUG_SendToCity(City city)
+    {
+        StartCivilToDestinationCity(city, 1);
+    }
+#endif
 }
