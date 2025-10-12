@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -25,6 +26,11 @@ public class City : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     public BarsLogic barsLogic;
     [SerializeField] private GameObject showCityOptionsButton;
+
+    [Header("Civils")]
+    [SerializeField] NpcCivilController civilControllerPrefab;
+
+    List<NpcCivilController> npcCivilControllers;
 
     // coroutines
     private Coroutine productionCoroutine;
@@ -229,4 +235,14 @@ public class City : MonoBehaviour
     }
 
     #endregion
+
+    public void StartCivilToDestinationCity(City destination, int medicineToCarry)
+    {
+        npcCivilControllers ??= new();
+
+        var npc = Instantiate(civilControllerPrefab, transform.position, Quaternion.identity);
+        npcCivilControllers.Add(npc);
+
+        npc.Initialize(destination, medicineToCarry);
+    }
 }
