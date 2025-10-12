@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 704beb407d4b46743a3ee8b35666d1c7
+guid: 654b5a5ffb4bdec4c99a74ed636cd67f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6296225924964703210
-    second: HealthBarBase_Medium_0
+      213: -9122481019882006434
+    second: StaminaBarIcon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 50, y: 50, z: 50, w: 50}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealthBarBase_Medium_0
+      name: StaminaBarIcon_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 238
-        height: 126
+        width: 27
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 614afdc41ef4f98a0800000000000000
-      internalID: -6296225924964703210
+      spriteID: e5890bb68df666180800000000000000
+      internalID: -9122481019882006434
       vertices: []
       indices: 
       edges: []
@@ -139,7 +139,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HealthBarBase_Medium_0: -6296225924964703210
+      StaminaBarIcon_0: -9122481019882006434
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

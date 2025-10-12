@@ -230,7 +230,7 @@ public class City : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         showCityOptionsButton.SetActive(false);
-        UIManager.Instance.HideCityPanelOptions();
+        UIManager.Instance.currentCity = null;
     }
 
     #endregion
