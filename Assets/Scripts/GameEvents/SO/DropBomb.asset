@@ -16,7 +16,7 @@ MonoBehaviour:
   GameEventEffect: 0
   ShowIcon: 0
   SpriteIcon: {fileID: 0}
-  BombPrefab: {fileID: 0}
+  BombPrefab: {fileID: 6452368030080160252, guid: 185eb5b93518e0a409e73eeba9dd6817, type: 3}
   chanceSuccess: 0
   StatsOnSuccess:
     Stamina: 0
