@@ -1985,6 +1985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   playerDialogueContainer: {fileID: 425239537}
   playerText: {fileID: 1470951601}
+  npcialogueContainer: {fileID: 0}
   NPCImage: {fileID: 489691965}
   NPCDialogueContainer: {fileID: 2076962415}
   NPCText: {fileID: 22641185}
@@ -2835,7 +2836,6 @@ MonoBehaviour:
   barsLogic: {fileID: 1719025016}
   showCityOptionsButton: {fileID: 180877465}
   civilControllerPrefab: {fileID: 2787158798834376847, guid: 44e91de4af4ed11408a5ac65bb09a777, type: 3}
-  cityref: {fileID: 1071948558}
 --- !u!212 &539478981
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4918,6 +4918,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6740304027397343808, guid: 139ae62c0c75b334193a1cda7260a334, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fc23177579e7a974c969f62a48f4eaa6, type: 3}
     - target: {fileID: 7230582030419917571, guid: 139ae62c0c75b334193a1cda7260a334, type: 3}
       propertyPath: m_Name
       value: MAP
@@ -5451,7 +5455,6 @@ MonoBehaviour:
   barsLogic: {fileID: 485373283}
   showCityOptionsButton: {fileID: 38875128}
   civilControllerPrefab: {fileID: 0}
-  cityref: {fileID: 0}
 --- !u!212 &1071948559
 SpriteRenderer:
   m_ObjectHideFlags: 0
