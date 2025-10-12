@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour, ISubscriber
     [Header("Player/NPC Dialogue")]
     [SerializeField] GameObject playerDialogueContainer;
     [SerializeField] TMP_Text playerText;
+    [SerializeField] GameObject npcialogueContainer;
     [SerializeField] Image NPCImage;
     [SerializeField] GameObject NPCDialogueContainer;
     [SerializeField] TMP_Text NPCText;
