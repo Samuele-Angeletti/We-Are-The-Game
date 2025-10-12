@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,10 +24,17 @@ public class Player : MonoBehaviour, ISubscriber
     [Header("Input (read-only)")]
     [SerializeField] private Vector2 movementInput = Vector2.zero;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip engineStartUp;
+    [SerializeField] AudioClip engineLoop;
+
+    Vector3 _cityPosition;
+    private bool _canMove = true;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        _cityPosition = transform.position;
         Publisher.Subscribe(this, typeof(AddStatsPlayerMessage));
         Publisher.Subscribe(this, typeof(OnOffPlayerMovement));
     }
@@ -54,17 +62,19 @@ public class Player : MonoBehaviour, ISubscriber
     private void OnMovementPerformed(InputAction.CallbackContext ctx)
     {
         movementInput = ctx.ReadValue<Vector2>();
+        HandleAudio(movementInput);
     }
 
     private void OnMovementCanceled(InputAction.CallbackContext ctx)
     {
         movementInput = Vector2.zero;
+        HandleAudio(movementInput);
     }
 
     void Update()
     {
         // Logica non-fisica: consumo stamina quando il giocatore si muove
-        if (occupied) return;
+        if (occupied || !_canMove) return;
 
         if (movementInput.sqrMagnitude > 0.001f)
         {
@@ -72,13 +82,26 @@ public class Player : MonoBehaviour, ISubscriber
             if (stats != null)
             {
                 stats.Stamina = Mathf.Max(0f, stats.Stamina - staminaDrainRate * Time.deltaTime);
+                if (stats.Stamina <= 0)
+                {
+                    StartCoroutine(ReturnToLastCity());
+                }
             }
         }
     }
 
+    private IEnumerator ReturnToLastCity()
+    {
+        _canMove = false;
+        yield return new WaitForSeconds(1);
+        _canMove = true;
+        transform.position = _cityPosition;
+        stats.Stamina = maxStamina;
+    }
+
     void FixedUpdate()
     {
-        if (occupied)
+        if (occupied || !_canMove)
         {
             // blocchiamo il movimento fisico se occupato
             // assicurati che occupied venga gestito esternamente
@@ -99,6 +122,33 @@ public class Player : MonoBehaviour, ISubscriber
 
         // Imposta la velocità (uso linearVelocity come richiesto)
         rb.linearVelocity = desired;
+    }
+
+    private void HandleAudio(Vector2 movementInput)
+    {
+        if (occupied || !_canMove)
+        {
+            if (audioSource.isPlaying) 
+                audioSource.Stop();
+            return;
+        }
+
+        if (movementInput == Vector2.zero)
+        {
+            audioSource.Stop();
+        }
+        else
+        {
+            if (audioSource.isPlaying)
+                return;
+
+            if (stats.Stamina == maxStamina)
+                audioSource.clip = engineStartUp;
+            else
+                audioSource.clip = engineLoop;
+
+            audioSource.Play();
+        }
     }
 
     /// <summary>
@@ -147,5 +197,11 @@ public class Player : MonoBehaviour, ISubscriber
     private void OnDestroy()
     {
         OnDisableSubscriber();
+    }
+
+    public void SetLastCity(City lastCity)
+    {
+        lastVisitedCity = lastCity;
+        _cityPosition = lastCity.transform.position;
     }
 }
