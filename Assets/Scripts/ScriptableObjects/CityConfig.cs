@@ -26,6 +26,9 @@ public class CityConfig : ScriptableObject
     [SerializeField, Min(0.01f)] private float medicineProductionInterval = 5f;
     public float MedicineProductionInterval => medicineProductionInterval;
 
+    [SerializeField, Min(1)] private int maxNpcs = 1;
+    public int MaxNpcs => maxNpcs;
+
     [Space]
     [SerializeField, Min(0)] private float timeBeforeDecay = 60f; // in seconds
     public float TimeBeforeDecay => timeBeforeDecay;

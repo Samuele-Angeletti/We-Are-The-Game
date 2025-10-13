@@ -497,4 +497,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CityDetail
   info: {fileID: 7101904548128136252}
   distance: {fileID: 3880720344011965454}
+  selectButton: {fileID: 2792400251963521121}
   cityImage: {fileID: 6234295502011795261}

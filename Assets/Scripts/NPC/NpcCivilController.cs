@@ -23,6 +23,9 @@ public class NpcCivilController : Character
     bool directionIsDestinationCity;
     int medicinesRequested = 0;
 
+    public City OwnCity => _ownCity;
+    public City DestinationCity => _destinationCity;
+
     // Sprite renderer & caching per evitare set non necessari
     SpriteRenderer _graphics;
     private Sprite _lastSprite = null;
@@ -56,6 +59,11 @@ public class NpcCivilController : Character
         _destinationCity = destinationCity;
         directionIsDestinationCity = true;
         agent.SetDestination(_destinationCity.transform.position);
+    }
+
+    public void Stop()
+    {
+        agent.isStopped = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

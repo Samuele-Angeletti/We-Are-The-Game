@@ -33,6 +33,9 @@ public class City : MonoBehaviour
     [SerializeField] NpcCivilController civilControllerPrefab;
     List<NpcCivilController> npcCivilControllers;
 
+    public int CurrentNpcs => npcCivilControllers?.Count ?? 0;
+    public List<NpcCivilController> NpcCivilControllers => npcCivilControllers;
+
     // coroutines
     private Coroutine productionCoroutine;
     private Coroutine decayCoroutine;
@@ -240,4 +243,19 @@ public class City : MonoBehaviour
         npc.Initialize(this, medicineToCarry);
         npc.SetCityDestination(destination);
     }
+
+    public void StopCivilFromDestinationCity(NpcCivilController npc)
+    {
+        if (npcCivilControllers == null || !npcCivilControllers.Contains(npc)) return;
+        Debug.Log($"Stopping NPC {npc.name} from city {name}");
+        npc.Stop();
+        npcCivilControllers.Remove(npc);
+        Destroy(npc.gameObject);
+    }
+
+    public bool CanSendHelp()
+    {
+        return isProducing && CurrentNpcs < config.MaxNpcs;
+    }
+
 }

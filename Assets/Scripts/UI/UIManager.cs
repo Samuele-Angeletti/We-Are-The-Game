@@ -159,6 +159,12 @@ public class UIManager : Singleton<UIManager>, ISubscriber
         HideCityPanelOptions();
     }
 
+    public void StopDestinationCityForNPC(NpcCivilController npc)
+    {
+        currentCity.StopCivilFromDestinationCity(npc);
+        HideCityPanelOptions();
+    }
+
     public void HideCityPanelOptions()
     {
         playerDialogueContainer.SetActive(false);
