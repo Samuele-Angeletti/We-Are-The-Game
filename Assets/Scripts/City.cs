@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -23,9 +24,10 @@ public class City : MonoBehaviour
     [SerializeField] private bool isShowingCurrentCityOptions = false;
 
     [Header("References")]
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    private List<SpriteRenderer> spriteRenderers;
     public BarsLogic barsLogic;
     [SerializeField] private GameObject showCityOptionsButton;
+    [SerializeField] List<Sprite> randomSprites;
 
     [Header("Civils")]
     [SerializeField] NpcCivilController civilControllerPrefab;
@@ -34,14 +36,17 @@ public class City : MonoBehaviour
     // coroutines
     private Coroutine productionCoroutine;
     private Coroutine decayCoroutine;
-
+    public CityConfig Config => config;
     void Awake()
     {
         if (config == null)
             Debug.LogError($"City '{name}' has no CityConfig assigned.");
 
-        if (spriteRenderer == null)
-            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
+        foreach (var spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.sprite = randomSprites[Random.Range(0, randomSprites.Count)];
+        }
     }
 
     void Start()
@@ -59,8 +64,10 @@ public class City : MonoBehaviour
         isProducing = false;
         showCityOptionsButton.SetActive(false);
 
-        if (spriteRenderer != null && config != null)
+        foreach (var spriteRenderer in spriteRenderers)
+        {
             spriteRenderer.color = config.NormalColor;
+        }
     }
 
     #region Save / Destroy / Medicine API
@@ -75,8 +82,11 @@ public class City : MonoBehaviour
 
         isSaved = true;
         StopDecay(); // ora non decadere più
-        if (spriteRenderer != null)
+
+        foreach (var spriteRenderer in spriteRenderers)
+        {
             spriteRenderer.color = config.SavedColor;
+        }
 
         StartMedicineProduction();
     }
@@ -89,14 +99,21 @@ public class City : MonoBehaviour
         StopDecay();
         StopMedicineProduction();
 
-        if (spriteRenderer != null)
+        foreach (var spriteRenderer in spriteRenderers)
+        {
             spriteRenderer.color = config.DestroyedColor;
+        }
     }
 
     public void AddMedicine(int amount)
     {
         if (isDestroyed) return;
         currentMedicine = Mathf.Clamp(currentMedicine + amount, 0, config.MedicineCap);
+
+        if (IsSaved) return;
+
+        if (currentMedicine >= config.MinimumMedicinesToSurvive)
+            SaveCity();
     }
 
     /// <summary>
@@ -191,31 +208,7 @@ public class City : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // cerca il Player (assumo ha componente Player)
-        var player = collision.GetComponent<Player>();
-        if (player == null) return;
-
-        // Quando il player entra:
-        // 1) Se ha medicine -> trasferiscile alla città
-        // 2) Marca la città come salvata (se ha ricevuto medicine almeno una volta)
-        // 3) Ripristina la stamina del player (diventa un campo base)
-
-        int playerMedicines = player.stats != null ? player.stats.Medicines : 0;
-        if (playerMedicines > 0)
-        {
-            int accepted = Mathf.Min(playerMedicines, config.MedicineCap - currentMedicine);
-            // se vuoi trasferire tutto indipendentemente dal cap, usa playerMedicines
-
-            // rimuovi dal player
-            player.stats.Medicines -= accepted;
-            // aggiungi alla città
-            AddMedicine(accepted);
-        }
-
-        // se ora la città ha medicine > 0 e non è distrutta -> è considerata salvata
-        if (!isDestroyed && currentMedicine > 0)
-        {
-            SaveCity();
-        }
+        if (!collision.TryGetComponent<Player>(out var player)) return;
 
         // la città funge da campo base: ripristina stamina del player
         player.RestoreFullStamina();

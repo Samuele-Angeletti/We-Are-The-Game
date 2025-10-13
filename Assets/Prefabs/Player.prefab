@@ -394,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     Stamina: 15
-    Medicines: 0
+    Medicines: 10
   moveSpeed: 5
   staminaDrainRate: 1
   maxStamina: 15
@@ -404,6 +404,11 @@ MonoBehaviour:
   audioSource: {fileID: 5192052776564053357}
   engineStartUp: {fileID: 8300000, guid: 4e1ccb29f3a560841b93a6067d1fd763, type: 3}
   engineLoop: {fileID: 8300000, guid: a2ca4351b52b1c3409ce7e7a3964f62b, type: 3}
+  north: {fileID: 0}
+  south: {fileID: 0}
+  east: {fileID: 0}
+  southEast: {fileID: 0}
+  northWest: {fileID: 0}
 --- !u!50 &5831625681584127372
 Rigidbody2D:
   serializedVersion: 5

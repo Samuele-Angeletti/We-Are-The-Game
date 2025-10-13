@@ -4,6 +4,9 @@ using UnityEngine;
 public class CityConfig : ScriptableObject
 {
     [Header("Settings")]
+    [SerializeField, Min(1)] private int minimumMedicineToSurvive = 10;
+    public int MinimumMedicinesToSurvive => minimumMedicineToSurvive;
+
     [SerializeField, Min(0)] private int startingMedicine = 0;
     public int StartingMedicine => startingMedicine;
 

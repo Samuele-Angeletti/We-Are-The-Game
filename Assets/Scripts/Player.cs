@@ -306,4 +306,11 @@ public class Player : MonoBehaviour, ISubscriber
         lastVisitedCity = lastCity;
         _cityPosition = lastCity.transform.position;
     }
+
+    internal int TakeMedicines()
+    {
+        var med = stats.Medicines;
+        stats.Medicines = 0;
+        return med;
+    }
 }

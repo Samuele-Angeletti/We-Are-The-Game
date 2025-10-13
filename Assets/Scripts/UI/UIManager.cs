@@ -1,12 +1,12 @@
 using DesignPatterns.Generics;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour, ISubscriber
+public class UIManager : Singleton<UIManager>, ISubscriber
 {
-    public static UIManager Instance;
-
     [Header("Player/NPC Dialogue")]
     [SerializeField] GameObject playerDialogueContainer;
     [SerializeField] TMP_Text playerText;
@@ -37,6 +37,12 @@ public class UIManager : MonoBehaviour, ISubscriber
     [SerializeField] Button acceptEventButton;
     [SerializeField] Button refuseEventButton;
 
+    [Header("City List")]
+    [SerializeField] GameObject cityListPanel;
+    [SerializeField] Transform cityListContainer;
+    [SerializeField] CityDetail cityDetailPrefab;
+    [SerializeField] TextMeshProUGUI currentCityMedicines;
+
     [Header("Dialogue Vars")]
     [SerializeField] int minDialogueLetters = 10;
     [SerializeField] int maxDialogueLetters = 15;
@@ -44,12 +50,11 @@ public class UIManager : MonoBehaviour, ISubscriber
     //tmp vars
     private GameEventsStats statsToAddPlayer;
     public City currentCity;
+    List<CityDetail> cityDetailSpawned;
 
-    public void Awake()
+    public override void Awake()
     {
-        if(Instance == null) Instance = this;
-        else Destroy(gameObject);
-
+        cityDetailSpawned = new List<CityDetail>();
         Publisher.Subscribe(this, typeof(OpenEventUIMessage));
     }
     private void Start()
@@ -106,11 +111,52 @@ public class UIManager : MonoBehaviour, ISubscriber
 
         Time.timeScale = 0;
     }
+
+    public void GiveMedicinesToSelectedCity()
+    {
+        currentCity.AddMedicine(GameManager.Instance.Player.TakeMedicines());
+    }
+
+    public void GetMedicinesFromSelectedCity()
+    {
+        GameManager.Instance.Player.ApplyStatsDelta(new GameEventsStats() { Medicines = currentCity.TakeMedicine(currentCity.CurrentMedicine) });
+    }
+
+    public void OpenCityListPanel()
+    {
+        var orderedByDistanceCities = CityManager.Instance.CityList
+            .Where(x => x != currentCity)
+            .Where(x => !x.IsDestroyed)
+            .OrderBy(x => Vector3.Distance(currentCity.transform.position, x.transform.position));
+        
+        if (cityDetailSpawned.Count > 0)
+            cityDetailSpawned.ForEach(x => Destroy(x.gameObject));
+
+        currentCityMedicines.text = $"Medicines in City: {currentCity.CurrentMedicine}";
+
+        foreach (var city in orderedByDistanceCities)
+        {
+            var cityDetail = Instantiate(cityDetailPrefab, cityListContainer);
+            cityDetail.Initialize(city, Vector3.Distance(currentCity.transform.position, city.transform.position), currentCity.CurrentMedicine);
+            cityDetailSpawned.Add(cityDetail);
+        }
+
+        cityListPanel.SetActive(true);
+    }
+
+    public void SelectDestinationCityForNPC(City destinationCity, int selectedMedicines)
+    {
+        currentCity.StartCivilToDestinationCity(destinationCity, selectedMedicines);
+
+        HideCityPanelOptions();
+    }
+
     public void HideCityPanelOptions()
     {
         playerDialogueContainer.SetActive(false);
         NPCDialogueContainer.SetActive(false);
         NPCImage.gameObject.SetActive(false);
+        cityListPanel.SetActive(false);
 
         currentCityOptionsPanel.SetActive(false);
 
