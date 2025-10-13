@@ -395,20 +395,20 @@ MonoBehaviour:
   stats:
     Stamina: 15
     Medicines: 10
-  moveSpeed: 5
-  staminaDrainRate: 1
   maxStamina: 15
+  moveSpeed: 2
+  staminaDrainRate: 2
   occupied: 0
   lastVisitedCity: {fileID: 0}
   movementInput: {x: 0, y: 0}
   audioSource: {fileID: 5192052776564053357}
   engineStartUp: {fileID: 8300000, guid: 4e1ccb29f3a560841b93a6067d1fd763, type: 3}
   engineLoop: {fileID: 8300000, guid: a2ca4351b52b1c3409ce7e7a3964f62b, type: 3}
-  north: {fileID: 0}
-  south: {fileID: 0}
-  east: {fileID: 0}
-  southEast: {fileID: 0}
-  northWest: {fileID: 0}
+  north: {fileID: 21300000, guid: b8484706e40468a44982aee63f18d92f, type: 3}
+  south: {fileID: 21300000, guid: d2780294fe83d50419bc22faf02e97aa, type: 3}
+  east: {fileID: 21300000, guid: 954b47d4556e51a4c8095e317f8efb0b, type: 3}
+  southEast: {fileID: 21300000, guid: cdcd173a1205be94c99c9cf37cd98afc, type: 3}
+  northWest: {fileID: 21300000, guid: 99b49c1f708074a47b0d0b5de4069a64, type: 3}
 --- !u!50 &5831625681584127372
 Rigidbody2D:
   serializedVersion: 5
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952c21ae3a97874418d5af748194b52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7470777299416464542}
+  character: {fileID: 7470777299416464542}
   medicineCount: {fileID: 1315206739864799952}
   staminaSlider: {fileID: 1185137113388205220}
   staminaFill: {fileID: 1684348413557860237}

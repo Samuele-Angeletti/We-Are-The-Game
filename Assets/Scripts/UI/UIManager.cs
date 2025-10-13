@@ -101,6 +101,13 @@ public class UIManager : Singleton<UIManager>, ISubscriber
             currentCityGetMedicines.gameObject.SetActive(true);
         }
 
+        UpdateCitySelection();
+
+        Time.timeScale = 0;
+    }
+
+    private void UpdateCitySelection()
+    {
         currentCityHealthBar.value = currentCity.barsLogic.healthBar.value;
         currentCityMedicinesBar.value = currentCity.barsLogic.medicinesBar.value;
         currentCityHealthText.text = currentCity.barsLogic.healthText.text;
@@ -108,18 +115,18 @@ public class UIManager : Singleton<UIManager>, ISubscriber
 
         playerText.text = RandomDialogueLetters();
         NPCText.text = RandomDialogueLetters();
-
-        Time.timeScale = 0;
     }
 
     public void GiveMedicinesToSelectedCity()
     {
         currentCity.AddMedicine(GameManager.Instance.Player.TakeMedicines());
+        UpdateCitySelection();
     }
 
     public void GetMedicinesFromSelectedCity()
     {
         GameManager.Instance.Player.ApplyStatsDelta(new GameEventsStats() { Medicines = currentCity.TakeMedicine(currentCity.CurrentMedicine) });
+        UpdateCitySelection();
     }
 
     public void OpenCityListPanel()
@@ -132,6 +139,7 @@ public class UIManager : Singleton<UIManager>, ISubscriber
         if (cityDetailSpawned.Count > 0)
             cityDetailSpawned.ForEach(x => Destroy(x.gameObject));
 
+        cityDetailSpawned.Clear();
         currentCityMedicines.text = $"Medicines in City: {currentCity.CurrentMedicine}";
 
         foreach (var city in orderedByDistanceCities)
@@ -146,8 +154,8 @@ public class UIManager : Singleton<UIManager>, ISubscriber
 
     public void SelectDestinationCityForNPC(City destinationCity, int selectedMedicines)
     {
-        currentCity.StartCivilToDestinationCity(destinationCity, selectedMedicines);
-
+        currentCity.StartCivilToDestinationCity(destinationCity, currentCity.TakeMedicine(selectedMedicines));
+        UpdateCitySelection();
         HideCityPanelOptions();
     }
 

@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : MonoBehaviour, ISubscriber
+public class Player : Character, ISubscriber
 {
     private GameInput inputActions;
     private new Rigidbody2D rb;
 
     [Header("Data")]
-    public GameEventsStats stats;               // contiene Stamina, StaminaCap, Medicines, ecc.
+    //public GameEventsStats stats;               // contiene Stamina, StaminaCap, Medicines, ecc.
     [Tooltip("Velocit� di movimento in units/s")]
     public float moveSpeed = 4f;
     [Tooltip("Quanta stamina viene consumata al secondo mentre ci si muove")]
     public float staminaDrainRate = 1f;
-    public float maxStamina = 100;
+    //public float maxStamina = 100;
 
     [Header("State")]
     public bool occupied = false;

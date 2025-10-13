@@ -3,12 +3,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NpcCivilController : MonoBehaviour
+public class NpcCivilController : Character
 {
     [SerializeField] float timeAwaitInCity = 2f;
-    [SerializeField] float maxStamina = 5;
+    //[SerializeField] float maxStamina = 5;
     [SerializeField] float staminaLoseSpeed = 1f;
-    public GameEventsStats stats;
+    //public GameEventsStats stats;
 
     [Header("Sprites (direzione)")]
     [SerializeField] Sprite north;
@@ -41,14 +41,14 @@ public class NpcCivilController : MonoBehaviour
     public void Initialize(City ownCity, int medicinesRequested)
     {
         _ownCity = ownCity;
-        stats.Medicines = _ownCity.TakeMedicine(medicinesRequested);
         this.medicinesRequested = medicinesRequested;
-        stats.Stamina = maxStamina;
+        SetStats(new GameEventsStats() { Stamina = maxStamina, Medicines = medicinesRequested });
     }
 
     public void SetStats(GameEventsStats stats)
     {
         this.stats.Medicines = stats.Medicines;
+        this.stats.Stamina = stats.Stamina;
     }
 
     public void SetCityDestination(City destinationCity)
@@ -106,9 +106,16 @@ public class NpcCivilController : MonoBehaviour
         stats.Stamina = maxStamina;
         // se _destinationCity o _ownCity sono null, proteggiamo con null-check
         if (directionIsDestinationCity && _destinationCity != null)
+        {
+            stats.Medicines = _ownCity.TakeMedicine(medicinesRequested);
             agent.SetDestination(_destinationCity.transform.position);
+        }
         else if (!directionIsDestinationCity && _ownCity != null)
+        {
+            _destinationCity.AddMedicine(stats.Medicines);
+            stats.Medicines = 0;
             agent.SetDestination(_ownCity.transform.position);
+        }
 
         agent.isStopped = false;
     }

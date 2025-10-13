@@ -29,6 +29,6 @@ public class CityDetail : MonoBehaviour
 
     public void Select()
     {
-        UIManager.Instance.SelectDestinationCityForNPC(_city, _city.TakeMedicine(medicines));
+        UIManager.Instance.SelectDestinationCityForNPC(_city, medicines);
     }
 }

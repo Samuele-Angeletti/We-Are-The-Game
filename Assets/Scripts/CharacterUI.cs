@@ -2,10 +2,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class PlayerUI : MonoBehaviour
+public class CharacterUI : MonoBehaviour
 {
     [Header("Source")]
-    public Player player;
+    public Character character;
 
     [Header("Binding")]
     public TMP_Text medicineCount;
@@ -42,8 +42,8 @@ public class PlayerUI : MonoBehaviour
 
         // inizializza visibilità (se la stamina è piena di default nascondiamo)
         bool startVisible = false;
-        if (player != null && player.stats != null)
-            startVisible = player.stats.Stamina < player.maxStamina;
+        if (character != null && character.stats != null)
+            startVisible = character.stats.Stamina < character.maxStamina;
 
         staminaVisible = startVisible;
 
@@ -56,15 +56,15 @@ public class PlayerUI : MonoBehaviour
 
     void Update()
     {
-        if (player == null || player.stats == null) return;
+        if (character == null || character.stats == null) return;
 
         // Aggiorna testo medicine
         if (medicineCount != null)
-            medicineCount.text = player.stats.Medicines.ToString();
+            medicineCount.text = character.stats.Medicines.ToString();
 
         // Calcola valore normalizzato della stamina
-        float staminaCap = Mathf.Max(0.0001f, player.maxStamina);
-        float staminaValue = Mathf.Clamp01(player.stats.Stamina / staminaCap);
+        float staminaCap = Mathf.Max(0.0001f, character.maxStamina);
+        float staminaValue = Mathf.Clamp01(character.stats.Stamina / staminaCap);
 
         if (staminaSlider != null)
             staminaSlider.value = staminaValue;
@@ -76,7 +76,7 @@ public class PlayerUI : MonoBehaviour
         }
 
         // Logica di show/hide
-        bool shouldBeVisible = player.stats.Stamina < player.maxStamina;
+        bool shouldBeVisible = character.stats.Stamina < character.maxStamina;
         if (shouldBeVisible != staminaVisible)
         {
             staminaVisible = shouldBeVisible;

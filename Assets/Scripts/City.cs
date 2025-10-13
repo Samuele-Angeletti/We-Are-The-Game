@@ -109,6 +109,7 @@ public class City : MonoBehaviour
     {
         if (isDestroyed) return;
         currentMedicine = Mathf.Clamp(currentMedicine + amount, 0, config.MedicineCap);
+        barsLogic.UpdateMedicinesBar(currentMedicine, config.MedicineCap);
 
         if (IsSaved) return;
 
@@ -124,6 +125,7 @@ public class City : MonoBehaviour
         if (isDestroyed) return 0;
         int removed = Mathf.Min(amount, currentMedicine);
         currentMedicine -= removed;
+        barsLogic.UpdateMedicinesBar(currentMedicine, config.MedicineCap);
         return removed;
     }
 
@@ -212,7 +214,7 @@ public class City : MonoBehaviour
 
         // la città funge da campo base: ripristina stamina del player
         player.RestoreFullStamina();
-
+        player.SetLastCity(this);
         // eventualmente notifica un manager di gioco (es. aumentare produzione globale)
 
 
@@ -238,11 +240,4 @@ public class City : MonoBehaviour
         npc.Initialize(this, medicineToCarry);
         npc.SetCityDestination(destination);
     }
-
-#if DEBUG
-    public void DEBUG_SendToCity(City city)
-    {
-        StartCivilToDestinationCity(city, 1);
-    }
-#endif
 }
