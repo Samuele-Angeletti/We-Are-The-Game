@@ -23,14 +23,28 @@ public class CityDetail : MonoBehaviour
         if (CityManager.IsCityHelpedBy(city, currentCity))
         {
             info.text = "This city is already being helped! Click to stop";
-            cityImage.color = _city.Config.SavedColor;
+            if (_city.IsDestroyed)
+            {
+                cityImage.color = _city.Config.DestroyedColor;
+            }
+            else
+            {
+                cityImage.color = (_city.IsSaved) ? _city.Config.SavedColor : _city.Config.NormalColor;
+            }
             isReceivingHelp = true;
         }
         else
         if (!currentCity.CanSendHelp())
         {
             info.text = "Your current city doesn't have available civils to help!";
-            cityImage.color = (_city.IsSaved) ? _city.Config.SavedColor : _city.Config.NormalColor;
+            if (_city.IsDestroyed)
+            {
+                cityImage.color = _city.Config.DestroyedColor;
+            }
+            else
+            {
+                cityImage.color = (_city.IsSaved) ? _city.Config.SavedColor : _city.Config.NormalColor;
+            }
             selectButton.interactable = false;
         }
         else
@@ -38,6 +52,13 @@ public class CityDetail : MonoBehaviour
         {
             info.text = "This city is save and is producing medicines!";
             cityImage.color = _city.Config.SavedColor;
+            isReceivingHelp = false;
+        }
+        else 
+        if (_city.IsDestroyed)
+        {
+            info.text = "This city is destroyed, helping won't be useful!";
+            cityImage.color = _city.Config.DestroyedColor;
             isReceivingHelp = false;
         }
         else

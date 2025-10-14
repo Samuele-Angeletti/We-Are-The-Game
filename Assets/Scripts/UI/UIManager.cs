@@ -133,7 +133,7 @@ public class UIManager : Singleton<UIManager>, ISubscriber
     {
         var orderedByDistanceCities = CityManager.Instance.CityList
             .Where(x => x != currentCity)
-            .Where(x => !x.IsDestroyed)
+            //.Where(x => !x.IsDestroyed)
             .OrderBy(x => Vector3.Distance(currentCity.transform.position, x.transform.position));
         
         if (cityDetailSpawned.Count > 0)
