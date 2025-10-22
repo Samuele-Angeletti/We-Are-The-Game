@@ -265,6 +265,12 @@ public class Player : Character, ISubscriber
         stats.Stamina += delta.Stamina;
         stats.Medicines += delta.Medicines;
 
+        //per mostrare se il player ha medicine nella ui
+        if (stats.Medicines > 0)
+            UIManager.Instance.ShowMedicineIcon();
+        else
+            UIManager.Instance.HideMedicineIcon();
+
         // clampare la stamina al cap (se la struttura ha lo staminaCap)
         if (stats.Stamina > maxStamina)
             stats.Stamina = maxStamina;
@@ -311,6 +317,7 @@ public class Player : Character, ISubscriber
     {
         var med = stats.Medicines;
         stats.Medicines = 0;
+        UIManager.Instance.HideMedicineIcon();
         return med;
     }
 }

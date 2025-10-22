@@ -10,7 +10,8 @@ public class CityManager : Singleton<CityManager>
     public override void Awake()
     {
         base.Awake();
-        cityList = FindObjectsByType<City>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+        //ho messo exclude invece di include perchè voglio la lista solo delle città attive
+        cityList = FindObjectsByType<City>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).ToList();
     }
 
     public List<City> CityList => cityList;

@@ -29,6 +29,9 @@ public class City : MonoBehaviour
     [SerializeField] private GameObject showCityOptionsButton;
     [SerializeField] List<Sprite> randomSprites;
 
+    //aggiunto per dire quale bandiera modificare quando salvata o distrutta
+    [SerializeField] int cityFlagIndex;
+
     [Header("Civils")]
     [SerializeField] NpcCivilController civilControllerPrefab;
     List<NpcCivilController> npcCivilControllers;
@@ -71,6 +74,8 @@ public class City : MonoBehaviour
         {
             spriteRenderer.color = config.NormalColor;
         }
+
+        barsLogic.UpdateMedicinesBar(CurrentMedicine, config.MinimumMedicinesToSurvive);
     }
 
     #region Save / Destroy / Medicine API
@@ -84,6 +89,8 @@ public class City : MonoBehaviour
         if (isDestroyed || isSaved) return;
 
         isSaved = true;
+        GameManager.Instance.CitySaved();
+        UIManager.Instance.SaveFlagOfCity(cityFlagIndex);
         StopDecay(); // ora non decadere più
 
         foreach (var spriteRenderer in spriteRenderers)
@@ -98,6 +105,8 @@ public class City : MonoBehaviour
     {
         if (isDestroyed) return;
         isDestroyed = true;
+        GameManager.Instance.CityDestroyed();
+        UIManager.Instance.DestoryFlagOfCity(cityFlagIndex);
         isSaved = false;
         StopDecay();
         StopMedicineProduction();
@@ -112,12 +121,15 @@ public class City : MonoBehaviour
     {
         if (isDestroyed) return;
         currentMedicine = Mathf.Clamp(currentMedicine + amount, 0, config.MedicineCap);
-        barsLogic.UpdateMedicinesBar(currentMedicine, config.MedicineCap);
+        barsLogic.UpdateMedicinesBar(currentMedicine, config.MinimumMedicinesToSurvive);
 
         if (IsSaved) return;
 
         if (currentMedicine >= config.MinimumMedicinesToSurvive)
+        {
             SaveCity();
+            barsLogic.UpdateMedicinesBar(currentMedicine, config.MedicineCap);
+        }
     }
 
     /// <summary>
@@ -129,6 +141,7 @@ public class City : MonoBehaviour
         int removed = Mathf.Min(amount, currentMedicine);
         currentMedicine -= removed;
         barsLogic.UpdateMedicinesBar(currentMedicine, config.MedicineCap);
+        UIManager.Instance.ShowMedicineIcon();
         return removed;
     }
 

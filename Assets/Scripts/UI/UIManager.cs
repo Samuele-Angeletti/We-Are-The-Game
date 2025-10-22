@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>, ISubscriber
 {
+    [Header("Overlay UI")]
+    [SerializeField] GameObject[] totalCitiesFlags;
+    [SerializeField] GameObject medicineIcon;
+
     [Header("Player/NPC Dialogue")]
     [SerializeField] GameObject playerDialogueContainer;
     [SerializeField] TMP_Text playerText;
@@ -14,9 +18,6 @@ public class UIManager : Singleton<UIManager>, ISubscriber
     [SerializeField] Image NPCImage;
     [SerializeField] GameObject NPCDialogueContainer;
     [SerializeField] TMP_Text NPCText;
-
-    [Header("Total Cities")]
-    public GameObject[] totalCities;
 
     [Header("Current City")]
     [SerializeField] GameObject currentCityOptionsPanel;
@@ -65,6 +66,25 @@ public class UIManager : Singleton<UIManager>, ISubscriber
         refuseEventButton.onClick.AddListener(HidePopoup);
         hideCityOptionsButton.onClick.AddListener(HideCityPanelOptions);
     }
+    #region OverlayUI
+    //viene chiamata per far vedere che la città è stata salvata o distrutta facendo vedere {verde} o {rosso} sulla bandiera tra le bandiere UI
+    public void SaveFlagOfCity(int _cityFlag)
+    {
+        totalCitiesFlags[_cityFlag].transform.GetChild(0).gameObject.SetActive(true);
+    }
+    public void DestoryFlagOfCity(int _cityFlag)
+    {
+        totalCitiesFlags[_cityFlag].transform.GetChild(1).gameObject.SetActive(true);
+    }
+    public void ShowMedicineIcon()
+    {
+        medicineIcon.SetActive(true);
+    }
+    public void HideMedicineIcon()
+    {
+        medicineIcon.SetActive(false);
+    }
+    #endregion
     public void ShowPopup(string _dialogue)
     {
         popUpPanel.SetActive(true);
@@ -212,6 +232,7 @@ public class UIManager : Singleton<UIManager>, ISubscriber
         Publisher.Publish(new AddStatsPlayerMessage(statsToAddPlayer));
         HidePopoup();
     }
+    
     public void OnPublish(IPublisherMessage message)
     {
         if (message is OpenEventUIMessage eventMessage)
