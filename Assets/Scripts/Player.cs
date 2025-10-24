@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,9 @@ public class Player : Character, ISubscriber
     [Tooltip("Quanta stamina viene consumata al secondo mentre ci si muove")]
     public float staminaDrainRate = 1f;
     //public float maxStamina = 100;
+
+    [Header("Camera")]
+    public CinemachineCamera cinemachineCamera;
 
     [Header("State")]
     public bool occupied = false;
@@ -46,6 +50,9 @@ public class Player : Character, ISubscriber
 
     // threshold below which we consider the player "idle" (no sprite change)
     private const float SPRITE_CHANGE_SPEED_THRESHOLD = 0.1f;
+
+    public Vector2 MovementInput => movementInput;
+    public bool CanMove => _canMove;
 
     void Awake()
     {
@@ -78,6 +85,7 @@ public class Player : Character, ISubscriber
 
     private void OnMovementPerformed(InputAction.CallbackContext ctx)
     {
+        cinemachineCamera.Target.TrackingTarget = transform;
         movementInput = ctx.ReadValue<Vector2>();
         HandleAudio(movementInput);
     }

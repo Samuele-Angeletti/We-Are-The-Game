@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
 
     public override void Awake()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         base.Awake();
         _player = FindFirstObjectByType<Player>(FindObjectsInactive.Exclude);
     }

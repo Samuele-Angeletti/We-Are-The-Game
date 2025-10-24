@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7134567415836263481}
   - component: {fileID: 2828179071603152956}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2559039034929061064}
   - component: {fileID: 7660116802795459735}
   - component: {fileID: 1684348413557860237}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 5128054214466672581}
   - component: {fileID: 6640543559543246923}
   - component: {fileID: 4448980494302992765}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StaminaIconImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 6953508041062527784}
   - component: {fileID: 1185137113388205220}
   - component: {fileID: 8310867249344417547}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StaminaSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 5831625681584127372}
   - component: {fileID: 8518977716073434765}
   - component: {fileID: 5192052776564053357}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,8 +396,9 @@ MonoBehaviour:
     Stamina: 15
     Medicines: 10
   maxStamina: 15
-  moveSpeed: 2
+  moveSpeed: 3
   staminaDrainRate: 2
+  cinemachineCamera: {fileID: 0}
   occupied: 0
   lastVisitedCity: {fileID: 0}
   movementInput: {x: 0, y: 0}
@@ -434,7 +435,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &8518977716073434765
 CircleCollider2D:
@@ -578,7 +579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4931516734542220029}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SliderTransitionTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,7 +612,7 @@ GameObject:
   - component: {fileID: 2217667513254811392}
   - component: {fileID: 4851167041409504784}
   - component: {fileID: 1315206739864799952}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MedicineCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +750,7 @@ GameObject:
   - component: {fileID: 3280574916434094735}
   - component: {fileID: 6883267154746244823}
   - component: {fileID: 1068355006025028720}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -875,7 +876,7 @@ GameObject:
   - component: {fileID: 5084907043746190733}
   - component: {fileID: 3603118811086982052}
   - component: {fileID: 4413638465038941460}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
