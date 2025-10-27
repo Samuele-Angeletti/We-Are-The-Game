@@ -236,12 +236,14 @@ public class City : MonoBehaviour
 
         showCityOptionsButton.SetActive(true);
         UIManager.Instance.currentCity = this;
+        EventsSpawner.Instance.StopSpawnEvent();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         showCityOptionsButton.SetActive(false);
         UIManager.Instance.currentCity = null;
+        EventsSpawner.Instance.StartSpawnEvent();
     }
 
     #endregion

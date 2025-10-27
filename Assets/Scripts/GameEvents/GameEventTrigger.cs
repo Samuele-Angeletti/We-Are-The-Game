@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameEventTrigger : MonoBehaviour
 {
-    [SerializeField] GameEvent gameEvent;
+    public GameEvent gameEvent;
     SpriteRenderer spriteRenderer;
     private void Awake()
     {
